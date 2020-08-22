@@ -5,6 +5,7 @@ import './tabPage/Hot.dart';
 import './tabPage/Search.dart';
 import './tabPage/Star.dart';
 import './tabPage/Mine.dart';
+import './router/router.dart';
 
 void main() {
   runApp(MyApp());
@@ -40,12 +41,15 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePage extends State<MyHomePage> {
   int _currentIndex = 0;
   List pageList = <Widget>[Home(), Hot(), Search(), Star(), Mine()];
+  List pageTitle = <String>['掘金','沸点','搜索','收藏','个人中心',];
+  GlobalKey<ScaffoldState> _globalKey = new GlobalKey();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _globalKey,
       appBar: AppBar(
-        title: Text('我的掘金'),
+        title: Text(this.pageTitle[this._currentIndex]),
         backgroundColor: Colors.deepOrange,
         actions: <Widget>[
           IconButton(
@@ -53,8 +57,18 @@ class _MyHomePage extends State<MyHomePage> {
             color: Colors.white,
           )
         ],
+        leading: IconButton(
+          icon: Icon(Icons.person),
+          onPressed: () {
+            this._globalKey.currentState.openDrawer();
+          },
+        ),
       ),
       body: this.pageList[this._currentIndex],
+      drawer: Container(
+        width: 100,
+        color: Colors.blue,
+      ),
       bottomNavigationBar: BottomNavigationBar(
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(icon: Icon(Icons.home), title: Text('首页')),

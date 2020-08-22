@@ -10,7 +10,10 @@ class Hot extends StatefulWidget{
 class _Hot extends State<Hot>{
   @override 
   Widget build(BuildContext context){
-    return Container(
+    return Listener(
+      onPointerDown: (e){print(e);},
+      onPointerUp: (e){print(e);},
+      child: Container(
       height: 800,
       color: Colors.orange,
       child: Flex(
@@ -28,6 +31,7 @@ class _Hot extends State<Hot>{
           )
         ],
       ),
+    ),
     );
   }
 }

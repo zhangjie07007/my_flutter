@@ -1,6 +1,6 @@
 # my_flutter
 
-A new Flutter project.
+一个flutter练手小项目
 
 ## Getting Started
 
