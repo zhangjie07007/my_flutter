@@ -18,29 +18,37 @@ class _Search extends State<Search> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        FlatButton(
-          color: Colors.blueAccent,
-          textColor: Colors.white,
-          child: Text('发送请求'),
-          onPressed: () async {
-            var params = {
-              'search': 1,
-              'cityCode': 320500,
-              'channelId': 'loupan',
-              'domain': 'www.yuanhaowang.com',
-              'companyId': 'AC618146041727811584110'
-            };
-            var res = await Fetch('search', params: params).init();
-          
-            if (res['code'] == 200) {
-              setState(() {
-                this._data = res['data'];
-              });
-            }
-          },
+        Flex(
+          direction: Axis.horizontal,
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            FlatButton(
+              color: Colors.blueAccent,
+              textColor: Colors.white,
+              child: Text('发送请求'),
+              onPressed: () async {
+                var res = await Fetch('search').init();
+                if (res['code'] == 200) {
+                  setState(() {
+                    this._data = res['data'];
+                  });
+                }
+              },
+            ),
+             FlatButton(
+              color: Colors.blueAccent,
+              textColor: Colors.white,
+              child: Text('添加节点'),
+              onPressed: ()  {
+                setState(() {
+                  this._data.add({'name':'铃鹿御前'});
+                });
+              },
+            ),
+          ],
         ),
         Container(
-          height: 500,
+          height: 400,
           child: ListView(
             children: this._data.map((item) {
               return GestureDetector(
@@ -49,13 +57,13 @@ class _Search extends State<Search> {
                 },
                 child: Container(
                   height: 100,
-                  margin: EdgeInsets.only(top: 10,right:10,left:10),
+                  margin: EdgeInsets.only(top: 10, right: 10, left: 10),
                   child: Flex(
                     direction: Axis.horizontal,
                     children: [
-                      Image.network(
-                        // "static/pic/test.jpg",
-                        "https://cdn1.xunkyz.com/tocConsul/Cardioid/20200822151704587_968439.jpg",
+                      Image.asset(
+                        "static/pic/test.jpg",
+                        // "https://cdn1.xunkyz.com/tocConsul/Cardioid/20200822151704587_968439.jpg",
                         width: 110,
                         height: 100,
                         fit: BoxFit.cover,

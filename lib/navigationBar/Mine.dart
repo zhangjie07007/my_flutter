@@ -28,7 +28,7 @@ class _Mine extends State<Mine>{
             color: Colors.orange,
             textColor: Colors.white,
             onPressed: (){
-              goLink(context, 'searchList');
+              goLink(context, 'test');
             },
           ),
           Expanded(

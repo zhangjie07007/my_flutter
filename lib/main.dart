@@ -1,11 +1,6 @@
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
-import './tabPage/home.dart';
-import './tabPage/Hot.dart';
-import './tabPage/Search.dart';
-import './tabPage/Star.dart';
-import './tabPage/Mine.dart';
-import './router/router.dart';
+import './navigationBar/index.dart';
 
 void main() {
   runApp(MyApp());
@@ -40,8 +35,6 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePage extends State<MyHomePage> {
   int _currentIndex = 0;
-  List pageList = <Widget>[Home(), Hot(), Search(), Star(), Mine()];
-  List pageTitle = <String>['掘金','沸点','搜索','收藏','个人中心',];
   GlobalKey<ScaffoldState> _globalKey = new GlobalKey();
 
   @override
@@ -49,7 +42,7 @@ class _MyHomePage extends State<MyHomePage> {
     return Scaffold(
       key: _globalKey,
       appBar: AppBar(
-        title: Text(this.pageTitle[this._currentIndex]),
+        title: Text(pageTitle[this._currentIndex]),
         backgroundColor: Colors.deepOrange,
         actions: <Widget>[
           IconButton(
@@ -64,7 +57,7 @@ class _MyHomePage extends State<MyHomePage> {
           },
         ),
       ),
-      body: this.pageList[this._currentIndex],
+      body: navicatorBar[this._currentIndex],
       drawer: Container(
         width: 100,
         color: Colors.blue,
